@@ -1,11 +1,8 @@
 import torch
 import config
-import cv2
-import os.path
 import numpy as np
 import matplotlib.pyplot as plt
 from model import FaceKeypointResNet50
-import time
 
 from printing_utils import *
 
@@ -76,7 +73,6 @@ def video_predict(video_path, model_path="model_dataset9_80.pth", show_points_na
 
     ret, frame_in_video = cap.read()
     while ret:
-        # cv2.imshow("output video", frame_in_video)
 
         predicted_points = []
         frame = frame_in_video
@@ -126,7 +122,6 @@ def video_predict(video_path, model_path="model_dataset9_80.pth", show_points_na
         if show_connections == 2:
             frame = add_connections(frame, predicted_points, w, h)
 
-        # cv2.imshow("output video", frame)
         frame_list.append(frame)
 
         ret, frame_in_video = cap.read()
@@ -142,8 +137,6 @@ def video_predict(video_path, model_path="model_dataset9_80.pth", show_points_na
 
         for frame in frame_list:
             cv2.imshow("output video", frame)
-
-            keyCode = cv2.waitKey(1)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 flag_out = True
