@@ -1,0 +1,4 @@
+# Created by .ignore support plugin (hsz.mobi)
+!/weights/mobilenet_v3_large.pth
+!/weights/resnet50.pth
+!/weights/xception.pth

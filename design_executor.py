@@ -24,6 +24,12 @@ class Window_executor(QtWidgets.QMainWindow):
         self.ui.btn_keyPoints_on_picture_2.clicked.connect(self.browse_photo_files)
         self.ui.btn_more_info.clicked.connect(self.open_dialog_more_info)
 
+    def open_dialog_more_info(self):
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Dialog_more_info()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def browse_photo_files(self):
         file_name = QFileDialog.getOpenFileName(self.ui.centralwidget, 'Open file', '', 'All Files (*)')
         # self.filename.setText(file_name[0])
@@ -31,24 +37,20 @@ class Window_executor(QtWidgets.QMainWindow):
         print(file_name)
         show_names_of_points = self.ui.checkBox_show_p_names.checkState()
         show_connection = self.ui.checkBox_show_connections.checkState()
+        selected_model = self.ui.comboBox_nn_model_2.currentText()
 
         if file_name[0] != '':
-            predict(file_name[0], show_connections=show_connection, show_points_names=show_names_of_points)
-
-    def open_dialog_more_info(self):
-        self.window = QtWidgets.QDialog()
-        self.ui = Ui_Dialog_more_info()
-        self.ui.setupUi(self.window)
-        self.window.show()
+            predict(file_name[0], model_type=selected_model, show_connections=show_connection, show_points_names=show_names_of_points)
 
     def browse_video_files(self):
         file_name = QFileDialog.getOpenFileName(self.ui.centralwidget, 'Open file', '', 'All Files (*)')
 
         show_names_of_points = self.ui.checkBox_show_p_names.checkState()
         show_connection = self.ui.checkBox_show_connections.checkState()
+        selected_model = self.ui.comboBox_nn_model_2.currentText()
 
         if file_name[0] != '':
-            video_predict(file_name[0], show_connections=show_connection, show_points_names=show_names_of_points)
+            video_predict(file_name[0], model_type=selected_model, show_connections=show_connection, show_points_names=show_names_of_points)
 
 
 app = QtWidgets.QApplication([])

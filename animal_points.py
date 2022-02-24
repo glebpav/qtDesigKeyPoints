@@ -91,7 +91,14 @@ all_points_connections = {
     Points_connection('belly_bottom', 'front_right_thai', BODY_COLOR),
     Points_connection('belly_bottom', 'back_right_thai', BODY_COLOR),
     Points_connection('belly_bottom', 'front_left_thai', BODY_COLOR),
-    Points_connection('belly_bottom', 'back_left_thai', BODY_COLOR), }
+    Points_connection('belly_bottom', 'back_left_thai', BODY_COLOR),
+
+    Points_connection('tail_base', 'back_middle', BODY_COLOR),
+    Points_connection('neck_end', 'back_middle', BODY_COLOR),
+    Points_connection('neck_end', 'back_middle', BODY_COLOR),
+    Points_connection('neck_end', 'back_middle', BODY_COLOR),
+
+}
 
 
 def get_idx(point):

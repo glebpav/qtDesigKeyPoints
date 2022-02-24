@@ -6,7 +6,7 @@ from animal_points import *
 def add_connections(frame, points, width=1, height=1, artem_edition=False):
     for cur_line in all_points_connections:
         if not artem_edition:
-            try :
+            try:
                 start_point = points[get_idx(cur_line.start_point)]
                 end_point = points[get_idx(cur_line.end_point)]
             except Exception:
@@ -16,7 +16,8 @@ def add_connections(frame, points, width=1, height=1, artem_edition=False):
             end_point = points[get_idx_artem_edition(cur_line.end_point)]
 
         if start_point.confidence > CONFIDENCE_LIMIT and end_point.confidence > CONFIDENCE_LIMIT:
-            print(start_point, end_point)
+
+            # print(start_point, end_point)
 
             start_coord = int(start_point.x * width), int(start_point.y * height)
             end_coord = int(end_point.x * width), int(end_point.y * height)
@@ -27,8 +28,10 @@ def add_connections(frame, points, width=1, height=1, artem_edition=False):
 
 def add_points(frame, points, width=1, height=1, m_color=(0, 255, 0), print_txt=False):
     for cur_point in points:
+        if cur_point.name_of_point == "upper_jaw":
+            print(cur_point)
         if cur_point.confidence > CONFIDENCE_LIMIT:
-            frame = cv2.circle(frame, (int(cur_point.x * width), int(cur_point.y * height)), radius=8,
+            frame = cv2.circle(frame, (int(cur_point.x * width), int(cur_point.y * height)), radius=2,
                                color=m_color, thickness=-1)
             if print_txt:
                 # font
